@@ -17,25 +17,26 @@ Route::get('/', function () {
 // Ruta para arreglos multidimensionales
 Route::get('arreglosMD',function(){
     $paises = [ "Colombia" => [
-                        "Capital :" => "Bogota D.C.",
-                        "Moneda " => "Peso",
-                        "Poblacion :" => 50
+                        "Capital" => "Bogota D.C.",
+                        "Moneda" => "Peso",
+                        "Poblacion" => 50,
+                        "CiudadesImportantes" =>["Cali" , "Medellin" , "Barranquilla"]
                                 ],  
                 "Peru" => [
-                    "Capital :" => "Lima",
-                    "Moneda " => "Sol",
-                    "Poblacion :" => 32
+                    "Capital" => "Lima",
+                    "Moneda" => "Sol",
+                    "Poblacion" => 32,
+                    "CiudadesImportantes" =>["Arequipa" , "Trujillo" , "Chiclayo"]
                 ],
                 "Bolivia" => [
-                    "Capital :" => "Sucre",
-                    "Moneda " => "Boliviano",
-                    "Poblacion :" => 12
+                    "Capital" => "Sucre",
+                    "Moneda" => "Boliviano",
+                    "Poblacion" => 12,
+                    "CiudadesImportantes" =>["Santa Cruz de la Sierra" , "El Alto" , "Cochabamba"]
                 ] 
             ];
-                echo "<pre>";
-                var_dump($paises);
-                echo "</pre>";
-
+                
+                /*
                 //Recorrer el arreglo
                 foreach($paises as $pais => $informacion){
                     echo "<h1> $pais:</h1>";
@@ -43,6 +44,14 @@ Route::get('arreglosMD',function(){
                         echo "$clave: $valor", "<br/>";
                     }
                 };
-    
+                */
 
-});
+                //MOSTRAR LA VISTA
+
+                return view('paises')
+                    ->with ('paises' , $paises);
+                
+            
+
+
+} );
