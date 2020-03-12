@@ -1,19 +1,14 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Producto;
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
 });
+/*
 // Ruta para arreglos multidimensionales
 Route::get('arreglosMD',function(){
     $paises = [ "Colombia" => [
@@ -45,13 +40,52 @@ Route::get('arreglosMD',function(){
                     }
                 };
                 */
-
+                    /*
                 //MOSTRAR LA VISTA
 
                 return view('paises')
                     ->with ('paises' , $paises);
-                
+                */
             
 
 
+
+Route::get('prueba', function (){
+
+            // Insetar Productos
+            $producto = new Producto();
+            
+            $p -> nombre = "Bicicleta";
+            // Crear Atributos
+            $p -> valor_unitario = 450.897;
+            // Guardar en DB
+            $p -> save();
+
+
 } );
+
+Route::get('NuevoProducto', function(){
+
+    //mostrar el formulario de guardar producto
+    return view('Productos.create');
+});
+
+Route::post('GuardarProducto',function(){
+
+    //recibir los datos que vienen desde formulario
+
+    $p = new Producto();
+            
+
+
+            $p -> nombre = $_POST["nombre"];
+            // Crear Atributos
+            $p -> valorunitario = $_POST["valor"];
+            // Guardar en DB
+            $p -> save();
+            echo "Producto Registrado";
+    echo "<pre>";
+    var_dump($_POST); 
+    echo "</pre>";
+
+});
